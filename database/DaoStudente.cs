@@ -60,23 +60,21 @@ namespace database
             }
             return studenti;
          }
-
-        public int AddEsame(int idStudente, int voto, DateTime dataEsame)
+        public ICollection<int> GetIdStudenti()
         {
-            var idEsame = 0;
-            using (var db = new MyContext())
-            {
-                Esame e = new Esame(){StudenteForeignKey = idStudente, VotoEsame=voto, DataEsame = dataEsame};
-                db.Esami.Add(e);
-                db.SaveChanges();
-                idEsame = e.IdEsame;
+            var idStudenti = new List<int>();
 
-
+            using(var db = new MyContext() ) {
+                var query = db.Studenti.Select(s => s.IdStudente);
+                foreach(var q in query)
+                {
+                    idStudenti.Add(q);
+                }
+            
             }
-
-            return idEsame;
-
+            return idStudenti;
         }
+       
 
         public ICollection<DtoEsameStudente> GetEsameJoinStudente()
         {

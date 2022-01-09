@@ -12,5 +12,10 @@ namespace database
         public string NomeStudente { get; set; }
         public int VotoEsame { get; set; }
         public DateTime DataEsame { get; set; }
+        public override string ToString()
+        {
+            return " ( " + GetType().Name+ "  Id Studente = " + IdStudente + " Id  Esame = " + IdEsame +" Voto Esame " + VotoEsame + " Data Esame " + DataEsame + " ) ";
+        }
+
     }
 }

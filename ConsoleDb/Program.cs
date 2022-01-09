@@ -39,7 +39,9 @@ namespace ConsoleDb
             var dao = new DaoStudente();
             var daoEsame = new DaoEsame();
             var studenti = dao.GetUtenti();
-
+            var idStudenti = dao.GetIdStudenti();
+           
+            daoEsame.AddEsame(new Random().Next(idStudenti.Count), 27, new DateTime(2014, 3, 2));
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Red;
             PrintICollection(studenti);
@@ -47,7 +49,10 @@ namespace ConsoleDb
             daoEsame.AddEsame(24, new DateTime(2020, 4, 12));
             daoEsame.AddEsame(28, DateTime.Now);
             var esamiSenzaStudenti = daoEsame.getEsamiSenzaStudenti();
-            PrintICollection(esamiSenzaStudenti);
+            var esamiConStudenti = daoEsame.GetEsamiConStudente();
+
+           // PrintICollection(esamiSenzaStudenti);
+            PrintICollection(esamiConStudenti);
         }
         static void Main(string[] args)
         {
